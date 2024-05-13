@@ -10,14 +10,25 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var searchText = ""
-    
-
+    @State private var WaterfallItems = [
+        WaterfallItem(height: 350, imgString: "img_0"),
+        WaterfallItem(height: 272, imgString: "img_1"),
+        WaterfallItem(height: 312, imgString: "img_2"),
+        WaterfallItem(height: 450, imgString: "img_3"),
+        WaterfallItem(height: 554, imgString: "img_4"),
+        WaterfallItem(height: 123, imgString: "img_5"),
+        WaterfallItem(height: 254, imgString: "img_6"),
+        WaterfallItem(height: 350, imgString: "img_7"),
+        WaterfallItem(height: 234, imgString: "img_8"),
+        WaterfallItem(height: 450, imgString: "img_9"),
+        WaterfallItem(height: 444, imgString: "img_10"),
+    ]
     
     var body: some View {
         
         TabView{
                 NavigationView{
-                    HomeView2()
+                    HomeView()
                         .navigationTitle("Simulation")
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar{
@@ -32,7 +43,7 @@ struct ContentView: View {
                         }
                 }
                     .tabItem {
-                        Label("Simulation",systemImage: "house")
+                        Label("Simulation",systemImage: "questionmark.bubble.fill")
                     }
                 NavigationStack{
                     FavoriteView(searchText: $searchText)
@@ -40,11 +51,14 @@ struct ContentView: View {
                 }
                 .searchable(text: $searchText)
                     .tabItem {
-                        Label("Favourite",systemImage: "star")
+                        Label("Favourite",systemImage: "heart.fill")
                     }
                 NavigationView{
-                    GalleryView()
-                        .navigationTitle("Idea")
+                    ScrollView {
+                        WaterfallView(WaterfallItems: WaterfallItems, numOfColumns: 2)
+                    }
+                    .navigationBarTitle("For your ideas")
+                    .searchable(text: $searchText)
                 }
                     .tabItem {
                         Label("Gallery",systemImage: "photo.stack")
