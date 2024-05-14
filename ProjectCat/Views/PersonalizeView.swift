@@ -18,7 +18,7 @@ struct PersonalizeView: View {
                         .padding(.top)
                 }
                 NavigationLink{
-                    SimulationView()
+                    SimulationView(ProductManager: ProductObject())
                 } label: {
                     Text("Start Simulation")
                         .font(.system(size: 17,weight: .semibold))

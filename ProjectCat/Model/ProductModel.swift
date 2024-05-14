@@ -14,5 +14,5 @@ struct ProductModel : Identifiable {
     var brand: String
     var type: String
     var price: Int
-    var vafourite: Bool
+    var favourite: Bool
 }

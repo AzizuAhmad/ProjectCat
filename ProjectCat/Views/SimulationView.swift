@@ -27,76 +27,77 @@ extension Color {
 struct SimulationView: View {
     @State var recomendations : [String] = ["D9D9D9", "D0D0D0", "EAEAEA", "BABABA"]
     @State var selectedTexture : TextureObject = .doff
+    @ObservedObject var ProductManager: ProductObject
     
     var body: some View {
-        ScrollView {
-            VStack (alignment: .leading,spacing: 16) {
-                Image("simulation-room")
-                    .resizable()
-                    .scaledToFit()
-                HStack (spacing: 12) {
-                    ForEach(recomendations, id: \.self) { recomendation in
-                        VStack {
-                            Rectangle()
-                                .frame(width: 68, height: 48)
-                                .foregroundColor(Color(hex: "#\(recomendation)"))
-                                .cornerRadius(8)
-                            Button(action: {
-                                let clipboard = UIPasteboard.general
-                                clipboard.setValue(recomendation, forPasteboardType: UTType.plainText.identifier)
-                            }, label: {
-                                HStack (spacing: 2) {
-                                    Text("#\(recomendation)")
-                                        .font(.caption)
-                                    Image(systemName: "doc.on.doc")
-                                        .imageScale(.small)
-                                }
-                            })
-                        }
+        VStack (spacing: 16) {
+            Image("simulation-room")
+                .resizable()
+                .scaledToFit()
+            
+            HStack (spacing: 12) {
+                ForEach(recomendations, id: \.self) { recomendation in
+                    VStack {
+                        Rectangle()
+                            .frame(width: 68, height: 48)
+                            .foregroundColor(Color(hex: "#\(recomendation)"))
+                            .cornerRadius(8)
+                        Button(action: {
+                            let clipboard = UIPasteboard.general
+                            clipboard.setValue(recomendation, forPasteboardType: UTType.plainText.identifier)
+                        }, label: {
+                            HStack (spacing: 2) {
+                                Text("#\(recomendation)")
+                                    .font(.caption)
+                                Image(systemName: "doc.on.doc")
+                                    .imageScale(.small)
+                            }
+                        })
                     }
                 }
-                .frame(maxWidth: .infinity)
-                VStack {
-                    Text("Recommendation Product")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Text("Tap the card below to see details information")
-                        .foregroundColor(.secondary)
+            }
+                
+            Form {
+                /// Product Recomendations
+                Section {
+                    ForEach(ProductManager.mockProduct, id: \.id) { product in
+                        NavigationLink {
+                            DetailProductView()
+                        } label: {
+                            ProductCardView(product: product)
+                        }
+                    }
+                } header: {
+                    Text("Product Recomendation")
+                } footer: {
+                    Text("Tap the card above to see details product information")
                 }
-                .padding(.horizontal, 16)
-                VStack {
+                /// Paint Characteristics
+                Section {
+                    Picker("Texture", selection: $selectedTexture) {
+                        ForEach(TextureObject.allCases, id: \.self) { texture in
+                            Text(texture.rawValue.capitalized)
+                        }
+                    }
+                    Picker("Texture", selection: $selectedTexture) {
+                        ForEach(TextureObject.allCases, id: \.self) { texture in
+                            Text(texture.rawValue.capitalized)
+                        }
+                    }
+                    Picker("Texture", selection: $selectedTexture) {
+                        ForEach(TextureObject.allCases, id: \.self) { texture in
+                            Text(texture.rawValue.capitalized)
+                        }
+                    }
+                    Picker("Texture", selection: $selectedTexture) {
+                        ForEach(TextureObject.allCases, id: \.self) { texture in
+                            Text(texture.rawValue.capitalized)
+                        }
+                    }
+                } header: {
                     Text("Paint Characteristics")
-                        .font(.title)
-                        .fontWeight(.bold)
+                } footer: {
                     Text("Different characteristics display for different result")
-                        .foregroundColor(.secondary)
-                }
-                .padding(.horizontal, 16)
-                NavigationView {
-                    Form {
-                        Section {
-                            Picker("Texture", selection: $selectedTexture) {
-                                ForEach(TextureObject.allCases, id: \.self) { texture in
-                                    Text(texture.rawValue.capitalized)
-                                }
-                            }
-                            Picker("Texture", selection: $selectedTexture) {
-                                ForEach(TextureObject.allCases, id: \.self) { texture in
-                                    Text(texture.rawValue.capitalized)
-                                }
-                            }
-                            Picker("Texture", selection: $selectedTexture) {
-                                ForEach(TextureObject.allCases, id: \.self) { texture in
-                                    Text(texture.rawValue.capitalized)
-                                }
-                            }
-                            Picker("Texture", selection: $selectedTexture) {
-                                ForEach(TextureObject.allCases, id: \.self) { texture in
-                                    Text(texture.rawValue.capitalized)
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -105,5 +106,5 @@ struct SimulationView: View {
 }
 
 #Preview {
-    SimulationView()
+    SimulationView(ProductManager: ProductObject())
 }

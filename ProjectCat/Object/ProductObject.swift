@@ -16,7 +16,7 @@ class ProductObject : ObservableObject {
             brand: "Dulux",
             type: "Elastex Waterproof 3-in-1",
             price: 200_000,
-            vafourite: false
+            favourite: false
         ),
         ProductModel(
             id: 2,
@@ -25,7 +25,7 @@ class ProductObject : ObservableObject {
             brand: "Decolith",
             type: "Weather Shield",
             price: 220_000,
-            vafourite: true
+            favourite: true
         )
     ]
 }
