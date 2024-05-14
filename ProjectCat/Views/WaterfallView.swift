@@ -7,17 +7,11 @@
 
 import SwiftUI
 
-struct WaterfallItem: Identifiable {
-    let id = UUID()
-    let height: CGFloat
-    let imgString: String
-}
-
 struct WaterfallView: View {
     
     struct Column: Identifiable {
         let id = UUID()
-        var WaterfallItems = [WaterfallItem]()
+        var WaterfallItems = [WaterfallItemModel]()
     }
     
     let columns: [Column]
@@ -25,7 +19,7 @@ struct WaterfallView: View {
     let spacing: CGFloat
     let horizontalPadding: CGFloat
     
-    init(WaterfallItems: [WaterfallItem], numOfColumns: Int, spacing: CGFloat = 16, horizontalPadding: CGFloat = 16) {
+    init(WaterfallItems: [WaterfallItemModel], numOfColumns: Int, spacing: CGFloat = 16, horizontalPadding: CGFloat = 16) {
         self.spacing = spacing
         self.horizontalPadding = horizontalPadding
         
@@ -38,7 +32,7 @@ struct WaterfallView: View {
         var columnsHeight = Array<CGFloat>(repeating: 0, count: numOfColumns)
         
         // now come the hardest part
-        for WaterfallItem in WaterfallItems {
+        for WaterfallItemModel in WaterfallItems {
             var smallestColumnIndex = 0
             var smallestHeight = columnsHeight.first!
             for i in 1 ..< columnsHeight.count {
@@ -49,8 +43,8 @@ struct WaterfallView: View {
                 }
             }
             
-            columns[smallestColumnIndex].WaterfallItems.append(WaterfallItem)
-            columnsHeight[smallestColumnIndex] += WaterfallItem.height
+            columns[smallestColumnIndex].WaterfallItems.append(WaterfallItemModel)
+            columnsHeight[smallestColumnIndex] += WaterfallItemModel.height
         }
         
         self.columns = columns
@@ -60,8 +54,8 @@ struct WaterfallView: View {
         HStack(alignment: .top, spacing: spacing) {
             ForEach(columns) { column in
                 LazyVStack (spacing: spacing) {
-                    ForEach(column.WaterfallItems) { WaterfallItem in
-                        getItemView(WaterfallItem: WaterfallItem)
+                    ForEach(column.WaterfallItems) { WaterfallItemModel in
+                        getItemView(WaterfallItemModel: WaterfallItemModel)
                         
                     }
                 }
@@ -72,22 +66,31 @@ struct WaterfallView: View {
 }
 
 struct getItemView: View {
-    var WaterfallItem: WaterfallItem
+    var WaterfallItemModel: WaterfallItemModel
     var body: some View {
-        ZStack {
-            GeometryReader { reader in
-                Image(WaterfallItem.imgString)
+        VStack (alignment: .leading) {
+            ZStack {
+                GeometryReader { reader in
+                    Image(WaterfallItemModel.imgString)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: reader.size.width, height: reader.size.height, alignment: .center)
+                }
+            }
+            .frame(height: WaterfallItemModel.height)
+            .frame(maxWidth: .infinity)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            HStack (alignment: .top) {
+                Image("nipponpaint")
                     .resizable()
-                    .scaledToFill()
-                    .frame(width: reader.size.width, height: reader.size.height, alignment: .center)
+                    .frame(width: 20, height: 20)
+                Text(WaterfallItemModel.excerpt)
+                    .font(.caption)
             }
         }
-        .frame(height: WaterfallItem.height)
-        .frame(maxWidth: .infinity)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
 #Preview {
-    WaterfallView(WaterfallItems: [WaterfallItem](), numOfColumns: 2)
+    WaterfallView(WaterfallItems: [WaterfallItemModel](), numOfColumns: 2)
 }

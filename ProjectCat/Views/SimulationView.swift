@@ -27,6 +27,7 @@ extension Color {
 struct SimulationView: View {
     @State var recomendations : [String] = ["D9D9D9", "D0D0D0", "EAEAEA", "BABABA"]
     @State var selectedTexture : TextureObject = .doff
+    @State var selectedColor : String = "D9D9D9"
     @ObservedObject var ProductManager: ProductObject
     
     var body: some View {
@@ -38,10 +39,31 @@ struct SimulationView: View {
             HStack (spacing: 12) {
                 ForEach(recomendations, id: \.self) { recomendation in
                     VStack {
-                        Rectangle()
-                            .frame(width: 68, height: 48)
-                            .foregroundColor(Color(hex: "#\(recomendation)"))
-                            .cornerRadius(8)
+                        if (selectedColor == recomendation) {
+                            Rectangle()
+                                .frame(width: 68, height: 48)
+                                .foregroundColor(Color(hex: "#\(recomendation)"))
+                                .cornerRadius(8)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.blue, lineWidth: 1.3)
+                                )
+                                .onTapGesture {
+                                    selectedColor = recomendation
+                                }
+                        } else {
+                            Rectangle()
+                                .frame(width: 68, height: 48)
+                                .foregroundColor(Color(hex: "#\(recomendation)"))
+                                .cornerRadius(8)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.secondary, lineWidth: 0.3)
+                                )
+                                .onTapGesture {
+                                    selectedColor = recomendation
+                                }
+                        }
                         Button(action: {
                             let clipboard = UIPasteboard.general
                             clipboard.setValue(recomendation, forPasteboardType: UTType.plainText.identifier)
@@ -74,16 +96,6 @@ struct SimulationView: View {
                 }
                 /// Paint Characteristics
                 Section {
-                    Picker("Texture", selection: $selectedTexture) {
-                        ForEach(TextureObject.allCases, id: \.self) { texture in
-                            Text(texture.rawValue.capitalized)
-                        }
-                    }
-                    Picker("Texture", selection: $selectedTexture) {
-                        ForEach(TextureObject.allCases, id: \.self) { texture in
-                            Text(texture.rawValue.capitalized)
-                        }
-                    }
                     Picker("Texture", selection: $selectedTexture) {
                         ForEach(TextureObject.allCases, id: \.self) { texture in
                             Text(texture.rawValue.capitalized)
