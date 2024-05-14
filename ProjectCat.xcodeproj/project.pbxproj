@@ -27,6 +27,7 @@
 		04D259B72BF2F1030040BC73 /* ProductCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D259B62BF2F1030040BC73 /* ProductCardView.swift */; };
 		04D259B92BF2F3350040BC73 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D259B82BF2F3350040BC73 /* ProductModel.swift */; };
 		04D259BB2BF2F5120040BC73 /* ProductObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D259BA2BF2F5120040BC73 /* ProductObject.swift */; };
+		04BEE5982BF25AA700F504EA /* DetailProductViewFav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEE5972BF25AA700F504EA /* DetailProductViewFav.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		04D259B62BF2F1030040BC73 /* ProductCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardView.swift; sourceTree = "<group>"; };
 		04D259B82BF2F3350040BC73 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		04D259BA2BF2F5120040BC73 /* ProductObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductObject.swift; sourceTree = "<group>"; };
+		04BEE5972BF25AA700F504EA /* DetailProductViewFav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewFav.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				045C7A0B2BF1B45A00F701F6 /* SimulationView.swift */,
 				045C7A0D2BF1B47600F701F6 /* DetailProductView.swift */,
 				04D259B62BF2F1030040BC73 /* ProductCardView.swift */,
+				04BEE5972BF25AA700F504EA /* DetailProductViewFav.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				045C7A042BF1AFFF00F701F6 /* QuestionModel.swift in Sources */,
 				045C7A082BF1B13900F701F6 /* QuestionView.swift in Sources */,
 				04D259B72BF2F1030040BC73 /* ProductCardView.swift in Sources */,
+				04BEE5982BF25AA700F504EA /* DetailProductViewFav.swift in Sources */,
 				045C7A0E2BF1B47600F701F6 /* DetailProductView.swift in Sources */,
 				04D259B12BF204DD0040BC73 /* TextureObject.swift in Sources */,
 				045C7A012BF1AFC900F701F6 /* QuestionObject.swift in Sources */,

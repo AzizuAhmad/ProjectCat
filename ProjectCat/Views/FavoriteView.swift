@@ -22,8 +22,6 @@ struct FavoriteView: View {
             FavoriteItem(imageFav: "paintCat", brandFav: "nipponpaint", brandText: "Nippon Paint", typePaintFav: "Harbor Gray", desFav: "Elastex Waterproof 3-in-1", textColorFav: "#A8C4BC"),
             FavoriteItem(imageFav: "paintCat", brandFav: "nipponpaint", brandText: "Delux", typePaintFav: "Cyan", desFav: "anti jamur", textColorFav: "#999111"),
             
-
-            
             // Add more items here...
         ]
 
@@ -49,7 +47,7 @@ struct FavoriteView: View {
         VStack{
             ScrollView(.vertical){
                 LazyVGrid(columns: columns){
-                
+                    
                     ForEach(filteredItems,id:\.self ){ i in
                        
                         layoutView(imageFav: i.imageFav,
@@ -59,12 +57,8 @@ struct FavoriteView: View {
                                    desFav: i.desFav,
                                    textColorFav: i.textColorFav)
                         
-                        
                     }
                 }
-                
-                
-                
                 
             }
         }
@@ -102,54 +96,62 @@ struct layoutView: View {
     var textColorFav: String
     
     var body: some View {
-        VStack{
-            Image(imageFav)
-                .resizable()
+        
+        NavigationLink{
+            DetailProductViewFav()
+        }label: {
+            VStack{
+                Image(imageFav)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 173,height: 130)
+                    .background(Color("FavoritCat"))
+                VStack{
+                    HStack{
+                        Image(brandFav)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 22)
+                        Text(brandText)
+                            .font(.system(size: 17,weight: .regular,design: .default))
+                            .foregroundStyle(.black)
+                    }
+                    .frame(width: 150,alignment: .leading)
+    //                                .border(Color.black)
+                    .padding(.bottom,-4)
+
+                    Text(typePaintFav)
+                        .font(.system(size: 22,weight: .bold,design: .default))
+                        .foregroundStyle(.black)
+                        .frame(width: 150,alignment: .leading)
+                        .padding(.bottom,1)
+
+                    Text(desFav)
+                        .font(.system(size: 12,weight: .regular,design: .default))
+                        .foregroundStyle(Color("detailfavorit"))
+                        .frame(width: 150,alignment: .leading)
+                        .padding(.bottom,1)
+
+                    HStack{
+                        Text(textColorFav)
+                            .font(.system(size: 17,weight: .regular,design: .default))
+                            .foregroundStyle(Color("LoginColor"))
+                        Image(systemName: "doc.on.doc")
+                            .foregroundColor(Color("LoginColor"))
+                            .font(.system(size: 12.36,weight: .regular))
+                            .padding(.leading,-4)
+                    }
+                    
+                }
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 173,height: 130)
-                .background(Color("FavoritCat"))
-            VStack{
-                HStack{
-                    Image(brandFav)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 22)
-                    Text(brandText)
-                        .font(.system(size: 17,weight: .regular,design: .default))
-                }
-                .frame(width: 150,alignment: .leading)
-//                                .border(Color.black)
-                .padding(.bottom,-4)
-
-                Text(typePaintFav)
-                    .font(.system(size: 22,weight: .bold,design: .default))
-                    .frame(width: 150,alignment: .leading)
-                    .padding(.bottom,1)
-
-                Text(desFav)
-                    .font(.system(size: 12,weight: .regular,design: .default))
-                    .foregroundStyle(Color("detailfavorit"))
-                    .frame(width: 150,alignment: .leading)
-                    .padding(.bottom,1)
-
-                HStack{
-                    Text(textColorFav)
-                        .font(.system(size: 17,weight: .regular,design: .default))
-                        .foregroundStyle(Color("LoginColor"))
-                    Image(systemName: "doc.on.doc")
-                        .foregroundColor(Color("LoginColor"))
-                        .font(.system(size: 12.36,weight: .regular))
-                        .padding(.leading,-4)
-                }
+                .background(.white)
+                .padding(.top,-12)
                 
             }
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 173,height: 130)
-            .background(.white)
-            .padding(.top,-12)
-            
+            .cornerRadius(10)
+    //                        .border(Color.black)
         }
-        .cornerRadius(10)
-//                        .border(Color.black)
+        
     }
 }

@@ -61,7 +61,7 @@ struct ContentView: View {
                     .searchable(text: $searchText)
                 }
                     .tabItem {
-                        Label("Gallery",systemImage: "photo.stack")
+                        Label("Idea",systemImage: "photo.stack")
                     }
             }
     }
