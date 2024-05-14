@@ -11,7 +11,7 @@ struct Login: View {
     
     @State var username: String = ""
     @State var password: String = ""
-
+    @State var showAlert: Bool = false
     
     var body: some View {
         NavigationView{
@@ -28,7 +28,17 @@ struct Login: View {
                 }label: {
                     LoginText()
                 }
+                .disabled((username == "Admin" && password == "Admin") ? false : true)
                 .padding(.top,40)
+                .onTapGesture {
+                    if username != "Admin" || password != "Admin" {
+                        showAlert = true
+                    }
+                }
+                .alert(isPresented: $showAlert, content: {
+                    Alert(title: Text("Error"), message: Text("Invalid username or password"), dismissButton: .default(Text("OK")))
+                })
+                
                 
                 HStack{
                     Spacer()
@@ -102,9 +112,6 @@ struct userPass:View {
     @Binding var username: String
     @Binding var password: String
     
-//    var image: String
-//    var text: String
-    
     var body: some View {
         HStack{
             Image(systemName: "person")
@@ -134,7 +141,7 @@ struct userPass:View {
             
             VStack{
                 
-                TextField("password",text: $password)
+                SecureField("password",text: $password)
                 Divider()
                     .frame(height: 1)
                     .overlay(.black)
