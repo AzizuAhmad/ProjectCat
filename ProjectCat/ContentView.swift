@@ -41,21 +41,6 @@ struct ContentView: View {
                                 .foregroundColor(Color("LoginColor"))
                             
                         }
-                }
-                    .tabItem {
-                        Label("Simulation",systemImage: "questionmark.bubble.fill")
-                    }
-                NavigationStack{
-                    FavoriteView(searchText: $searchText)
-                        .navigationTitle("Favourite")
-                }
-                .searchable(text: $searchText)
-                    .tabItem {
-                        Label("Favourite",systemImage: "heart.fill")
-                    }
-                NavigationView{
-                    ScrollView {
-                        WaterfallView(WaterfallItems: WaterfallItemModels, numOfColumns: 2)
                     }
             }
             .tabItem {
@@ -71,7 +56,7 @@ struct ContentView: View {
             }
             NavigationView{
                 ScrollView {
-                    WaterfallView(WaterfallItems: WaterfallItems, numOfColumns: 2)
+                    WaterfallView(WaterfallItems: WaterfallItemModels, numOfColumns: 2)
                 }
                 .navigationBarTitle("For your ideas")
                 .searchable(text: $searchText)

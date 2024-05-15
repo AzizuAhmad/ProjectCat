@@ -58,7 +58,7 @@ struct WaterfallView: View {
                         NavigationLink{
                             InsightDetail()
                         } label: {
-                            getItemView(WaterfallItem: WaterfallItem)
+                            getItemView(WaterfallItemModel: WaterfallItem)
                         }
                         
                     }
