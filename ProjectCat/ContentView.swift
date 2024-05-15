@@ -23,47 +23,48 @@ struct ContentView: View {
         WaterfallItem(height: 450, imgString: "img_9"),
         WaterfallItem(height: 444, imgString: "img_10"),
     ]
+    @StateObject var ProdauctManager = ProductObject()
     
     var body: some View {
         
         TabView{
-                NavigationView{
-                    HomeView()
-                        .navigationTitle("Simulation")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar{
-                            ToolbarItem(placement: .destructiveAction){
-                                Image(systemName: "person.circle")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 30)
-                                    .foregroundColor(Color("LoginColor"))
-
-                            }
+            NavigationView{
+                HomeView(products: ProdauctManager)
+                    .navigationTitle("Start")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar{
+                        ToolbarItem(placement: .destructiveAction){
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30)
+                                .foregroundColor(Color("LoginColor"))
+                            
                         }
-                }
-                    .tabItem {
-                        Label("Simulation",systemImage: "questionmark.bubble.fill")
-                    }
-                NavigationStack{
-                    FavoriteView(searchText: $searchText)
-                        .navigationTitle("Favourite")
-                }
-                .searchable(text: $searchText)
-                    .tabItem {
-                        Label("Favourite",systemImage: "heart.fill")
-                    }
-                NavigationView{
-                    ScrollView {
-                        WaterfallView(WaterfallItems: WaterfallItems, numOfColumns: 2)
-                    }
-                    .navigationBarTitle("For your ideas")
-                    .searchable(text: $searchText)
-                }
-                    .tabItem {
-                        Label("Idea",systemImage: "photo.stack")
                     }
             }
+            .tabItem {
+                Label("Simulation",systemImage: "questionmark.bubble.fill")
+            }
+            NavigationView{
+                FavoriteView(paintFav: ProdauctManager)
+                    .navigationTitle("Favourite")
+            }
+            .searchable(text: $searchText)
+            .tabItem {
+                Label("Favourite",systemImage: "heart.fill")
+            }
+            NavigationView{
+                ScrollView {
+                    WaterfallView(WaterfallItems: WaterfallItems, numOfColumns: 2)
+                }
+                .navigationBarTitle("For your ideas")
+                .searchable(text: $searchText)
+            }
+            .tabItem {
+                Label("Idea",systemImage: "photo.stack")
+            }
+        }
     }
 }
 

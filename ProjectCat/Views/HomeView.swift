@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var products : ProductObject
+    @StateObject var questions = QuestionObject()
+    
     var body: some View {
-        
         VStack{
             Image("Creativity-bro")
                 .resizable()
@@ -33,7 +35,7 @@ struct HomeView: View {
                 .padding(.leading,-8)
             
             NavigationLink{
-                PersonalizeView(QuestionManager: QuestionObject())
+                PersonalizeView(QuestionManager: questions, products: products)
             } label: {
                 Text("Start Simulation")
                     .font(.system(size: 17,weight: .semibold))
@@ -50,5 +52,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(products: ProductObject())
 }

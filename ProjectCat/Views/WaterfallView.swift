@@ -61,7 +61,11 @@ struct WaterfallView: View {
             ForEach(columns) { column in
                 LazyVStack (spacing: spacing) {
                     ForEach(column.WaterfallItems) { WaterfallItem in
-                        getItemView(WaterfallItem: WaterfallItem)
+                        NavigationLink{
+                            InsightDetail()
+                        } label: {
+                            getItemView(WaterfallItem: WaterfallItem)
+                        }
                         
                     }
                 }

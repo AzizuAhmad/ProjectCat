@@ -8,16 +8,7 @@
 import SwiftUI
 
 struct ProductCardView: View {
-    @State var product = ProductModel(
-        id: 1,
-        hex: "D9D9D9",
-        name: "Graycloth",
-        brand: "Dulux",
-        type: "Elastex Waterproof 3-in-1",
-        price: 200_000,
-        favourite: false
-    )
-    
+    @State var product : ProductModel
     
     var body: some View {
         HStack (alignment: .center, spacing: 12) {
@@ -40,14 +31,18 @@ struct ProductCardView: View {
                     .imageScale(.large)
                     .foregroundStyle(.red)
                     .onTapGesture {
-                        product.favourite = false
+                        self.product.favourite = false
+                        print(product.favourite)
+
                     }
             } else {
                 Image(systemName: "heart.fill")
                     .imageScale(.large)
                     .foregroundStyle(HierarchicalShapeStyle.quaternary)
                     .onTapGesture {
-                        product.favourite = true
+//                        product.favourite.wrappedValue
+                        self.product.favourite = true
+                        print(product.favourite)
                     }
             }
         }
@@ -55,5 +50,17 @@ struct ProductCardView: View {
 }
 
 #Preview {
-    ProductCardView()
+    ProductCardView(product: ProductModel(
+        id: UUID(),
+        imageFav: "paintCat",
+        imageBrand: "nippontpaint",
+        hex: "D9D9D9",
+        name: "Graycloth",
+        brand: "Dulux",
+        type: "Elastex Waterproof 3-in-1",
+        price: 200_000,
+        favourite: false
+    )
+    )
 }
+

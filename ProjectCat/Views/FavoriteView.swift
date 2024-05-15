@@ -9,55 +9,31 @@ import SwiftUI
 
 struct FavoriteView: View {
     
+    @ObservedObject var paintFav: ProductObject
+    
     let columns: [GridItem] = [GridItem(.flexible()),
                               GridItem(.flexible())
                                
     ]
     
-    let favoriteItems = [
-            FavoriteItem(imageFav: "paintCat", brandFav: "nipponpaint", brandText: "Nippon Paint", typePaintFav: "Harbor Gray", desFav: "Elastex Waterproof 3-in-1", textColorFav: "#A8C4BC"),
-            FavoriteItem(imageFav: "paintCat", brandFav: "nipponpaint", brandText: "Delux", typePaintFav: "Cyan", desFav: "anti jamur", textColorFav: "#999111"),
-            FavoriteItem(imageFav: "paintCat", brandFav: "nipponpaint", brandText: "Nippon Paint", typePaintFav: "Harbor Gray", desFav: "Elastex Waterproof 3-in-1", textColorFav: "#A8C4BC"),
-            FavoriteItem(imageFav: "paintCat", brandFav: "nipponpaint", brandText: "Delux", typePaintFav: "Cyan", desFav: "anti jamur", textColorFav: "#999111"),
-            FavoriteItem(imageFav: "paintCat", brandFav: "nipponpaint", brandText: "Nippon Paint", typePaintFav: "Harbor Gray", desFav: "Elastex Waterproof 3-in-1", textColorFav: "#A8C4BC"),
-            FavoriteItem(imageFav: "paintCat", brandFav: "nipponpaint", brandText: "Delux", typePaintFav: "Cyan", desFav: "anti jamur", textColorFav: "#999111"),
-            
-            // Add more items here...
-        ]
 
 //    get variable from ContentView file
-    @Binding var searchText:String
-    
-    var filteredItems: [FavoriteItem] {
-            if searchText.isEmpty {
-                return favoriteItems
-            } else {
-                return favoriteItems.filter {
-                    $0.typePaintFav.localizedCaseInsensitiveContains(searchText) ||
-                    $0.brandText.localizedStandardContains(searchText) ||
-                    $0.desFav.localizedStandardContains(searchText)
 
-                }
-            }
-        }
-
-    
      
     var body: some View {
         VStack{
             ScrollView(.vertical){
                 LazyVGrid(columns: columns){
-                    
-                    ForEach(filteredItems,id:\.self ){ i in
-                       
-                        layoutView(imageFav: i.imageFav,
-                                   brandFav: i.brandFav,
-                                   brandText: i.brandText,
-                                   typePaintFav: i.typePaintFav,
-                                   desFav: i.desFav,
-                                   textColorFav: i.textColorFav)
-                        
+
+                    if self.paintFav.mockProduct.filter({ $0.favourite == true }).first != nil{
+                        ForEach(self.$paintFav.mockProduct.filter({$0.favourite.wrappedValue == true})){product in
+                            layoutView(
+                                imageFav: product.imageFav.wrappedValue, brandFav: product.imageBrand.wrappedValue, brandText: product.brand.wrappedValue, typePaintFav: product.name.wrappedValue, desFav: product.type.wrappedValue, textColorFav: product.hex.wrappedValue
+                            )
+                            
+                        }
                     }
+
                 }
                 
             }
@@ -67,7 +43,7 @@ struct FavoriteView: View {
 }
 
 #Preview {
-    FavoriteView(searchText: .constant(""))
+    FavoriteView(paintFav: ProductObject())
 }
 
 struct FavoriteItem: Identifiable,Hashable {
@@ -121,7 +97,7 @@ struct layoutView: View {
                     .padding(.bottom,-4)
 
                     Text(typePaintFav)
-                        .font(.system(size: 22,weight: .bold,design: .default))
+                        .font(.system(size: 20,weight: .bold,design: .default))
                         .foregroundStyle(.black)
                         .frame(width: 150,alignment: .leading)
                         .padding(.bottom,1)

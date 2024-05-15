@@ -10,7 +10,9 @@ import Foundation
 class ProductObject : ObservableObject {
     @Published var mockProduct = [
         ProductModel(
-            id: 1,
+            id: UUID(),
+            imageFav: "paintCat",
+            imageBrand: "nipponpaint",
             hex: "D9D9D9",
             name: "Graycloth",
             brand: "Dulux",
@@ -19,7 +21,9 @@ class ProductObject : ObservableObject {
             favourite: false
         ),
         ProductModel(
-            id: 2,
+            id: UUID(),
+            imageFav: "paintCat",
+            imageBrand: "nipponpaint",
             hex: "D9D9D9",
             name: "Smokey Wings",
             brand: "Decolith",

@@ -27,7 +27,7 @@ extension Color {
 struct SimulationView: View {
     @State var recomendations : [String] = ["D9D9D9", "D0D0D0", "EAEAEA", "BABABA"]
     @State var selectedTexture : TextureObject = .doff
-    @ObservedObject var ProductManager: ProductObject
+    @ObservedObject var ProductManager : ProductObject
     
     var body: some View {
         VStack (spacing: 16) {
@@ -60,11 +60,34 @@ struct SimulationView: View {
             Form {
                 /// Product Recomendations
                 Section {
-                    ForEach(ProductManager.mockProduct, id: \.id) { product in
+                    ForEach($ProductManager.mockProduct, id: \.id) { product in
                         NavigationLink {
                             DetailProductView()
                         } label: {
-                            ProductCardView(product: product)
+                            HStack (alignment: .center, spacing: 12) {
+                                Rectangle()
+                                    .frame(width: 60, height: 60)
+                                    .foregroundColor(Color(hex: product.hex.wrappedValue))
+                                    .cornerRadius(8)
+                                VStack (alignment: .leading) {
+                                    Text(product.name.wrappedValue)
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                    Text(product.brand.wrappedValue)
+                                        .font(.callout)
+                                    Text("Rp \(product.price.wrappedValue)")
+                                        .foregroundColor(.secondary)
+                                }
+                                Spacer()
+                                Image(systemName: "heart.fill")
+                                    .imageScale(.large)
+                                    .foregroundStyle(product.favourite.wrappedValue ? Color(.red) : Color(.blue))
+                                    .onTapGesture {
+                                        product.favourite.wrappedValue.toggle()
+                                        print(product.favourite)
+
+                                    }
+                            }
                         }
                     }
                 } header: {
@@ -74,16 +97,6 @@ struct SimulationView: View {
                 }
                 /// Paint Characteristics
                 Section {
-                    Picker("Texture", selection: $selectedTexture) {
-                        ForEach(TextureObject.allCases, id: \.self) { texture in
-                            Text(texture.rawValue.capitalized)
-                        }
-                    }
-                    Picker("Texture", selection: $selectedTexture) {
-                        ForEach(TextureObject.allCases, id: \.self) { texture in
-                            Text(texture.rawValue.capitalized)
-                        }
-                    }
                     Picker("Texture", selection: $selectedTexture) {
                         ForEach(TextureObject.allCases, id: \.self) { texture in
                             Text(texture.rawValue.capitalized)

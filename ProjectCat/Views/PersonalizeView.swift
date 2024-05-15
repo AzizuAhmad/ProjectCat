@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PersonalizeView: View {
     @ObservedObject var QuestionManager: QuestionObject
+    @ObservedObject var products: ProductObject
     
     var body: some View {
         ScrollView {
@@ -18,7 +19,7 @@ struct PersonalizeView: View {
                         .padding(.top)
                 }
                 NavigationLink{
-                    SimulationView(ProductManager: ProductObject())
+                    SimulationView(ProductManager: products)
                 } label: {
                     Text("Start Simulation")
                         .font(.system(size: 17,weight: .semibold))
@@ -37,5 +38,5 @@ struct PersonalizeView: View {
 }
 
 #Preview {
-    PersonalizeView(QuestionManager: QuestionObject())
+    PersonalizeView(QuestionManager: QuestionObject(), products: ProductObject())
 }
