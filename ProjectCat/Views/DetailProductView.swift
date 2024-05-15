@@ -42,25 +42,31 @@ struct DetailProductView: View {
                         .foregroundColor(.gray)
                 }
                 VStack (alignment: .leading, spacing: 12) {
-                    Text("Product Specification")
-                        .font(.title)
+                    Text("How to Use")
+                        .font(.title2)
                         .fontWeight(.bold)
                     VStack{
-                        row_data(col1: "Type", col2: "Emulsi elastomerik akrilik")
-                        row_data(col1: "Texture", col2: "Low Sheen")
-                        row_data(col1: "Color", col2: "Trout")
-                        row_data(col1: "Specific Gravity", col2: "1.02 - 1.25 (White)")
-                        row_data(col1: "Non-Volatile", col2: "57%")
-                        row_data(col1: "Spread Power", col2: "6 - 7 m²/kg/lapis (90μ).")
-                        row_data(col1: "", col2: "9 - 11 m²/kg/lapis (90μ).")
+                        row_data(col1: "Solvent", col2: "Water")
+                        row_data(col1: "Dilution", col2: "10 - 20% on the first layer, 0 - 5% onthe soend and third layer.")
+                        row_data(col1: "Applicate with", col2: "Brush, Roll, Airless Spray")
+                        row_data(col1: "Layers", col2: "2 or 3 layers")
                     }
-                    Text("Description")
-                        .font(.title)
+                    
+                    Text("Application")
+                        .font(.title2)
                         .fontWeight(.bold)
-                    Text("Elastex Waterproof 3-in-1 adalah cat pelapis anti-bocor dengan sifat 3-in-1 dan teknologi Hydro-Flex. Berbahan dasar latex elastomerik akrilik yang sangat baik untuk mencegah kebocoran air, menutup retak ram- but, sebagai cat dasar yang unggul, dan dapat pula digunakan sebagai cat akhir. Cat ini memiliki sifat kedap air, elastis, tahan retak, anti-alkali, anti-jamur, daya rekat yang kuat dan anti-lumer/leleh.")
+                    Text("Waktu kering akan terhambat pada temperatur udara yang rendah. Jangan aplikasikan cat pada kelembaban udara >85% dan atau temperatur udara <7°C. Semua peralatan sebaiknya langsung dibersihkan dengan air setelah selesai digunakan. Jangan lakukan tinting dengan pigmen berbahan dasar minyak/thinner.")
                         .fixedSize(horizontal: false, vertical: true)
-                    Text("Elastex Waterproof 3-in-1 digunakan pada tempat-tempat yang sering mengalami kebocoran seperti pada langit-langit, atap, talang atau sambungan, atap genteng atau seng, atap asbes atau kayu, atap beton, tangki air, tembok bagian luar, dll. Cat ini dapat digunakan pada semen/beton, kayu, besi dan seng.")
-                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    Text("Dry Time (30° C)")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    VStack{
+                        row_data(col1: "Kering Sentuh", col2: "30 menit.")
+                        row_data(col1: "Kering Keras", col2: "60 menit.")
+                        row_data(col1: "Interval Pengecatan Selanjutnya", col2: "2 - 3 jam.")
+                    }
+                    
                     Button {
                         print("Favourite")
                     } label: {
@@ -102,10 +108,23 @@ struct DetailsView: View {
         NavigationView {
             ScrollView {
                 VStack (alignment: .leading, spacing: 16) {
-                    Text("Application")
-                        .font(.title)
+                    Text("Product Specification")
+                        .font(.title2)
                         .fontWeight(.bold)
-                    Text("Waktu kering akan terhambat pada temperatur udara yang rendah. Jangan aplikasikan cat pada kelembaban udara >85% dan atau temperatur udara <7°C. Semua peralatan sebaiknya langsung dibersihkan dengan air setelah selesai digunakan. Jangan lakukan tinting dengan pigmen berbahan dasar minyak/thinner.")
+                    VStack{
+                        row_data(col1: "Type", col2: "Emulsi elastomerik akrilik")
+                        row_data(col1: "Texture", col2: "Low Sheen")
+                        row_data(col1: "Color", col2: "Trout")
+                        row_data(col1: "Specific Gravity", col2: "1.02 - 1.25 (White)")
+                        row_data(col1: "Non-Volatile", col2: "57%")
+                        row_data(col1: "Spread Power", col2: "6 - 7 m²/kg/lapis (90μ).")
+                    }
+                    
+                    Text("Description")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    Text("Elastex Waterproof 3-in-1 adalah cat pelapis anti-bocor dengan sifat 3-in-1 dan teknologi Hydro-Flex. Berbahan dasar latex elastomerik akrilik yang sangat baik untuk mencegah kebocoran air, menutup retak ram- but, sebagai cat dasar yang unggul, dan dapat pula digunakan sebagai cat akhir. Cat ini memiliki sifat kedap air, elastis, tahan retak, anti-alkali, anti-jamur, daya rekat yang kuat dan anti-lumer/leleh.")
+                    Text("Elastex Waterproof 3-in-1 digunakan pada tempat-tempat yang sering mengalami kebocoran seperti pada langit-langit, atap, talang atau sambungan, atap genteng atau seng, atap asbes atau kayu, atap beton, tangki air, tembok bagian luar, dll. Cat ini dapat digunakan pada semen/beton, kayu, besi dan seng.")
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.horizontal, 16)
@@ -122,6 +141,7 @@ struct row_data: View {
         HStack {
             HStack () {
                 Text(col1)
+                    .foregroundColor(.secondary)
                 Spacer()
             }
             .frame(width: 120)
@@ -129,7 +149,7 @@ struct row_data: View {
             Spacer()
         }
         Rectangle()
-            .frame(width: .infinity, height: 0.33)
+            .frame(width: .infinity, height: 0.3)
             .opacity(0.3)
     }
 }

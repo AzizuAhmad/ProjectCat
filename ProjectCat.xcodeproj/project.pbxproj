@@ -29,6 +29,7 @@
 		04D259B72BF2F1030040BC73 /* ProductCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D259B62BF2F1030040BC73 /* ProductCardView.swift */; };
 		04D259B92BF2F3350040BC73 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D259B82BF2F3350040BC73 /* ProductModel.swift */; };
 		04D259BB2BF2F5120040BC73 /* ProductObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D259BA2BF2F5120040BC73 /* ProductObject.swift */; };
+		04DE16CC2BF3C4F30016515C /* WaterfallItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE16CB2BF3C4F30016515C /* WaterfallItemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		04D259B62BF2F1030040BC73 /* ProductCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardView.swift; sourceTree = "<group>"; };
 		04D259B82BF2F3350040BC73 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		04D259BA2BF2F5120040BC73 /* ProductObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductObject.swift; sourceTree = "<group>"; };
+		04DE16CB2BF3C4F30016515C /* WaterfallItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallItemModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			children = (
 				045C7A032BF1AFFF00F701F6 /* QuestionModel.swift */,
 				04D259B82BF2F3350040BC73 /* ProductModel.swift */,
+				04DE16CB2BF3C4F30016515C /* WaterfallItemModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				045C79FC2BF1AED200F701F6 /* HomeView.swift in Sources */,
 				0446143B2BE88370006D0BEF /* ProjectCatApp.swift in Sources */,
 				045C7A042BF1AFFF00F701F6 /* QuestionModel.swift in Sources */,
+				04DE16CC2BF3C4F30016515C /* WaterfallItemModel.swift in Sources */,
 				045C7A082BF1B13900F701F6 /* QuestionView.swift in Sources */,
 				04D259B72BF2F1030040BC73 /* ProductCardView.swift in Sources */,
 				04BEE5982BF25AA700F504EA /* DetailProductViewFav.swift in Sources */,
