@@ -90,6 +90,8 @@ struct getItemView: View {
                     .frame(width: 20, height: 20)
                 Text(WaterfallItemModel.excerpt)
                     .font(.caption)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.leading)
             }
         }
     }

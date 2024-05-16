@@ -10,7 +10,7 @@ import Foundation
 struct QuestionModel : Identifiable {
     var id: Int
     var question : String
-    var description : String
+    var description : String?
     var options : [String]
     var selection : String?
 }

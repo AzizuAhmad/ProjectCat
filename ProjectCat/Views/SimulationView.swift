@@ -27,7 +27,9 @@ extension Color {
 struct SimulationView: View {
     @State var recomendations : [String] = ["D9D9D9", "D0D0D0", "EAEAEA", "BABABA"]
     @State var selectedTexture : TextureObject = .doff
+    @State var selectedLighting : LightingObject = .natural
     @State var selectedColor : String = "D9D9D9"
+    @State var colorInput: Color = Color.blue
     @ObservedObject var ProductManager: ProductObject
     
     var body: some View {
@@ -80,6 +82,24 @@ struct SimulationView: View {
             }
                 
             Form {
+                /// Paint Characteristics
+                Section {
+                    ColorPicker("Paint Color", selection: $colorInput)
+                    Picker("Texture", selection: $selectedTexture) {
+                        ForEach(TextureObject.allCases, id: \.self) { texture in
+                            Text(texture.rawValue.capitalized)
+                        }
+                    }
+                    Picker("Room Lighting", selection: $selectedLighting) {
+                        ForEach(LightingObject.allCases, id: \.self) { lighting in
+                            Text(lighting.rawValue.capitalized)
+                        }
+                    }
+                } header: {
+                    Text("Paint Characteristics")
+                } footer: {
+                    Text("Different characteristics display for different result")
+                }
                 /// Product Recomendations
                 Section {
                     ForEach($ProductManager.mockProduct, id: \.id) { product in
@@ -103,7 +123,7 @@ struct SimulationView: View {
                                 Spacer()
                                 Image(systemName: "heart.fill")
                                     .imageScale(.large)
-                                    .foregroundStyle(product.favourite.wrappedValue ? Color(.red) : Color(.blue))
+                                    .foregroundStyle(product.favourite.wrappedValue ? Color(.red) : Color(.gray))
                                     .onTapGesture {
                                         product.favourite.wrappedValue.toggle()
                                         print(product.favourite)
@@ -116,23 +136,6 @@ struct SimulationView: View {
                     Text("Product Recomendation")
                 } footer: {
                     Text("Tap the card above to see details product information")
-                }
-                /// Paint Characteristics
-                Section {
-                    Picker("Texture", selection: $selectedTexture) {
-                        ForEach(TextureObject.allCases, id: \.self) { texture in
-                            Text(texture.rawValue.capitalized)
-                        }
-                    }
-                    Picker("Texture", selection: $selectedTexture) {
-                        ForEach(TextureObject.allCases, id: \.self) { texture in
-                            Text(texture.rawValue.capitalized)
-                        }
-                    }
-                } header: {
-                    Text("Paint Characteristics")
-                } footer: {
-                    Text("Different characteristics display for different result")
                 }
             }
         }

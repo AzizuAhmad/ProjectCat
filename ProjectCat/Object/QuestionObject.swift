@@ -11,39 +11,35 @@ class QuestionObject : ObservableObject {
     @Published var mockQuestion = [
         QuestionModel(
             id: 1,
-            question: "Apakah Anda Siap?",
-            description: "Pertanyaan ini mengacu pada konteks hubungan yang serius",
-            options: ["Ya", "Tidak"]
+            question: "Apakah kamu perlu proteksi esktra terhadap bangunanmu?",
+            description: "Proteksi ekstra termasuk anti jamur, anti alkali, anti air, anti sinar UV",
+            options: ["Tahan Anti Hujan", "Rendah Zat Kimia (Alkali)", "Anti Sinar UV", "Anti Jamur"]
         ),
         QuestionModel(
             id: 2,
-            question: "Apakah benar kids?",
-            description: "Pertanyaan ini bermaksud untuk mengkonfirmasi pertanyaan sebelumnya",
-            options: ["Ya", "Tidak"]
+            question: "Apakah anda tertarik dengan cat tembok ramah lingkungan?",
+            description: "Pertanyaan ini berkaitan dengan komposisi yang ada pada cat",
+            options: ["Sangat tertarik", "Tidak tertarik"]
         ),
         QuestionModel(
             id: 3,
-            question: "Balikan?",
-            description: "Pertanyaan ini mengacu pada konteks hubungan yang serius",
-            options: ["Ya", "Tidak"]
+            question: "Apakah dirumah ada anak kecil yang suka mencoret tembok?",
+            options: ["Ada, bocil kaya dajjal", "Udah saya singkirkan"]
         ),
         QuestionModel(
             id: 4,
-            question: "Apakah benar kids?",
-            description: "Pertanyaan ini bermaksud untuk mengkonfirmasi pertanyaan sebelumnya",
-            options: ["Ya", "Tidak"]
+            question: "Apakah membutuhkan cat yang memiliki proteksi ketika terkena noda?",
+            options: ["Butuh bgt kak", "Bodoamat apansih", "Lu siapa ngatur-ngatur"]
         ),
         QuestionModel(
             id: 5,
-            question: "Balikan?",
-            description: "Pertanyaan ini mengacu pada konteks hubungan yang serius",
-            options: ["Ya", "Tidak"]
+            question: "Diruangan mana anda ingin mengecat tembok?",
+            options: ["Di kamar tidur", "Di ruang keluarga", "Di Dapur", "Di Garasi"]
         ),
         QuestionModel(
             id: 6,
-            question: "Apakah benar kids?",
-            description: "Pertanyaan ini bermaksud untuk mengkonfirmasi pertanyaan sebelumnya",
-            options: ["Ya", "Tidak"]
+            question: "Anggaran untuk pengecatan dinding ini?",
+            options: ["~Rp 1.000.000", "~Rp 10.000.000", "~Rp. 100.000.000", "~Rp. 1.000.000.000"]
         ),
     ]
 }

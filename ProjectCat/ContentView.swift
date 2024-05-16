@@ -58,7 +58,7 @@ struct ContentView: View {
                 ScrollView {
                     WaterfallView(WaterfallItems: WaterfallItemModels, numOfColumns: 2)
                 }
-                .navigationBarTitle("For your ideas")
+                .navigationBarTitle("Ideas")
                 .searchable(text: $searchText)
             }
             .tabItem {

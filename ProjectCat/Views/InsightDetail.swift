@@ -6,50 +6,53 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct InsightDetail: View {
     
-    
-    let columns: [GridItem] = [GridItem(.flexible()),
-                              GridItem(.flexible())
-                               
-    ]
+    @State var recomendations : [String] = ["D9D9D9", "D0D0D0", "EAEAEA", "BABABA", "C7B7A3", "EADBC8", "B5C18E"]
+    let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        VStack{
-            Image("insightImage")
-                .resizable()
-                .frame(width: 364,height: 450)
-                .padding(.bottom,10)
-            
-            ScrollView(.vertical){
-                LazyVGrid(columns: columns,alignment: .center){
-                    ForEach(1...10,id:\.self){i in
-                        VStack{
-                            Rectangle()
-                                .frame(width: 172,height: 100)
-                                .foregroundColor(.brown)
-                                .cornerRadius(10)
-                            
-                            Text("Code : #D9C5F6 ")
-                                .font(.system(size: 17,weight: .regular))
-                                .padding(.leading,-20)
-                                .multilineTextAlignment(.leading)
-//                                .border(Color.black)
-                            Text("Name : Sakura")
-                                .font(.system(size: 17,weight: .regular))
-                                .padding(.leading,-36)
-                                .multilineTextAlignment(.leading)
-//                                .border(Color.black)
-
+        GeometryReader { reader in
+            VStack (spacing: 12) {
+                Image("insightImage")
+                    .resizable()
+                    .padding(.horizontal, 16)
+                    .frame(width: reader.size.width,height: 250)
+                    .scaledToFill()
+                ScrollView(.vertical){
+                    LazyVGrid(columns: columns, alignment: .center, spacing: 16) {
+                        ForEach(recomendations, id:\.self){recomendation in
+                            Button(action: {
+                                let clipboard = UIPasteboard.general
+                                clipboard.setValue(recomendation, forPasteboardType: UTType.plainText.identifier)
+                            }, label: {
+                                VStack {
+                                    Rectangle()
+                                        .frame(width: 172,height: 100)
+                                        .foregroundColor(Color(hex: "#\(recomendation)"))
+                                        .cornerRadius(10)
+                                    HStack (spacing: 2) {
+                                        Text("#\(recomendation)")
+                                            .font(.system(size: 17,weight: .regular))
+                                        Image(systemName: "doc.on.doc")
+                                            .imageScale(.small)
+                                    }
+                                    Text("Sakura")
+                                        .font(.system(size: 17,weight: .regular))
+                                        .foregroundColor(.black)
+                                    
+                                }
+                            })
                         }
                     }
+                    .padding(.horizontal, 16)
                 }
             }
-            
-            Spacer()
         }
-        .navigationTitle("Your Colors")
+        .navigationTitle("Colours of The Year 2024")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

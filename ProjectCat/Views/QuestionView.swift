@@ -20,8 +20,10 @@ struct QuestionView: View {
             Text(question.question)
                 .font(.title)
                 .fontWeight(.bold)
-            Text(question.description)
-                .foregroundColor(.gray)
+            if question.description != nil {
+                Text(question.description!)
+                    .foregroundColor(.gray)
+            }
             ForEach(question.options, id: \.self) { option in
                 Button(action: {
                     question.selection = option

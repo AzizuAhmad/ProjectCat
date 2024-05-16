@@ -17,18 +17,6 @@ struct ProductModel : Identifiable {
     var type: String
     var price: Int
     var favourite: Bool
-    
-//    init(id: UUID, imageFav: String, imageBrand: String, hex: String, name: String, brand: String, type: String, price: Int, favourite: Bool) {
-//        self.id = id
-//        self.imageFav = imageFav
-//        self.imageBrand = imageBrand
-//        self.hex = hex
-//        self.name = name
-//        self.brand = brand
-//        self.type = type
-//        self.price = price
-//        self.favourite = favourite
-//    }
 }
 
 var defaultPaint = ProductModel(

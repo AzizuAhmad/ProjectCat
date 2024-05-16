@@ -8,7 +8,10 @@
 import Foundation
 
 enum TextureObject : String, CaseIterable, Identifiable {
-    case doff, glossy
+    case doff = "Solid (Doff/Mate)"
+    case glossy = "Mengkilap (Glossy)"
+    case eggshell = "Bertekstur halus (Eggshell)"
+    case satin = "Lembut (Satin)"
     var id: Self { self }
 }
 

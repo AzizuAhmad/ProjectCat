@@ -26,25 +26,14 @@ struct ProductCardView: View {
                     .foregroundColor(.secondary)
             }
             Spacer()
-            if product.favourite {
-                Image(systemName: "heart.fill")
-                    .imageScale(.large)
-                    .foregroundStyle(.red)
-                    .onTapGesture {
-                        self.product.favourite = false
-                        print(product.favourite)
+            Image(systemName: "heart.fill")
+                .imageScale(.large)
+                .foregroundStyle(product.favourite ? Color.red : Color.gray)
+                .onTapGesture {
+                    self.product.favourite.toggle()
+                    print(product.favourite)
 
-                    }
-            } else {
-                Image(systemName: "heart.fill")
-                    .imageScale(.large)
-                    .foregroundStyle(HierarchicalShapeStyle.quaternary)
-                    .onTapGesture {
-//                        product.favourite.wrappedValue
-                        self.product.favourite = true
-                        print(product.favourite)
-                    }
-            }
+                }
         }
     }
 }
