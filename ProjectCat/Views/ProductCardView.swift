@@ -31,7 +31,6 @@ struct ProductCardView: View {
                 .foregroundStyle(product.favourite ? Color.red : Color.gray)
                 .onTapGesture {
                     self.product.favourite.toggle()
-                    print(product.favourite)
 
                 }
         }

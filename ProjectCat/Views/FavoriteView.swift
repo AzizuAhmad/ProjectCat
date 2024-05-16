@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct FavoriteView: View {
     
@@ -93,7 +94,6 @@ struct layoutView: View {
                             .foregroundStyle(.black)
                     }
                     .frame(width: 150,alignment: .leading)
-    //                                .border(Color.black)
                     .padding(.bottom,-4)
 
                     Text(typePaintFav)
@@ -107,16 +107,20 @@ struct layoutView: View {
                         .foregroundStyle(Color("detailfavorit"))
                         .frame(width: 150,alignment: .leading)
                         .padding(.bottom,1)
-
-                    HStack{
-                        Text(textColorFav)
-                            .font(.system(size: 17,weight: .regular,design: .default))
-                            .foregroundStyle(Color("LoginColor"))
-                        Image(systemName: "doc.on.doc")
-                            .foregroundColor(Color("LoginColor"))
-                            .font(.system(size: 12.36,weight: .regular))
-                            .padding(.leading,-4)
-                    }
+                    Button(action: {
+                        let clipboard = UIPasteboard.general
+                        clipboard.setValue(textColorFav, forPasteboardType: UTType.plainText.identifier)
+                    }, label: {
+                        HStack{
+                            Text("#\(textColorFav)")
+                                .font(.system(size: 17,weight: .regular,design: .default))
+                                .foregroundStyle(Color("LoginColor"))
+                            Image(systemName: "doc.on.doc")
+                                .foregroundColor(Color("LoginColor"))
+                                .font(.system(size: 12.36,weight: .regular))
+                                .padding(.leading,-4)
+                        }
+                    })
                     
                 }
                 .aspectRatio(contentMode: .fit)
